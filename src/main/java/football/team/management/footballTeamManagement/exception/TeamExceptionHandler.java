@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -37,12 +38,24 @@ public class TeamExceptionHandler {
 
     @ExceptionHandler(TeamException.class)
     public ResponseEntity<CustomError> validationException(TeamException ex) {
+        LOGGER.error("TeamException: {}", ex.getMessage(), ex);
         CustomError error = new CustomError(
                 HttpStatus.NOT_FOUND,
                 ex.getMessage(),
                 ex.getCode()
         );
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<CustomError> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        LOGGER.error("MethodArgumentNotValidException: {}", ex.getMessage(), ex);
+        CustomError error = new CustomError(
+                HttpStatus.BAD_REQUEST,
+                "La solicitud es invalida",
+                400L
+        );
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
 }

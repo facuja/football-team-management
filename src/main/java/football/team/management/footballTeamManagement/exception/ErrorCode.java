@@ -5,7 +5,8 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode {
 
-    NOT_FOUND_TEAM("Equipo no encontrado.", 404L);
+    NOT_FOUND_TEAM("Equipo no encontrado.", 404L),
+    EXISTING_TEAM("El nombre del equipo ya existe", 404L);
     private final String description;
     private final Long code;
 

@@ -11,7 +11,7 @@ public interface FootballTeamService {
 
     FootballTeam getTeamById(Long id);
 
-    FootballTeam getTeamByName(String name);
+    List<FootballTeam> getTeamsByName(String name);
 
     FootballTeam createTeam(FootballTeamDtoIn footballTeamDtoIn);
 
