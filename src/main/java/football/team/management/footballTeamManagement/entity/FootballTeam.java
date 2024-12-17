@@ -6,18 +6,15 @@ import lombok.Data;
 @Table(name = "EQUIPOS")
 @Entity
 @Data
-public class footballTeam {
+public class FootballTeam {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "NOMBRE")
-    private String name;
+    private String nombre;
 
-    @Column(name = "LIGA")
-    private String league;
+    private String liga;
 
-    @Column(name = "PAIS")
-    private String country;
+    private String pais;
 }
