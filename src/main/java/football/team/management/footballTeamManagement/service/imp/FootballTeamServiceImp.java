@@ -92,6 +92,7 @@ public class FootballTeamServiceImp implements FootballTeamService {
         FootballTeam existingTeam = validExistingTeamById(id);
         footballTeamRepository.delete(existingTeam);
     }
+
     private FootballTeam validExistingTeamById(Long id){
         return footballTeamRepository
                 .findById(id)
