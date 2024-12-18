@@ -48,7 +48,7 @@ public class TeamExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<CustomError> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+    public ResponseEntity<CustomError> methodArgumentNotValidException(MethodArgumentNotValidException ex) {
         LOGGER.error("MethodArgumentNotValidException: {}", ex.getMessage(), ex);
         CustomError error = new CustomError(
                 HttpStatus.BAD_REQUEST,
@@ -58,4 +58,14 @@ public class TeamExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<CustomError> invalidCredentialsException(InvalidCredentialsException ex) {
+        LOGGER.error("InvalidCredentialsException: {}", ex.getMessage(), ex);
+        CustomError error = new CustomError(
+                HttpStatus.UNAUTHORIZED,
+                ex.getMessage(),
+                ex.getCode()
+        );
+        return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
+    }
 }

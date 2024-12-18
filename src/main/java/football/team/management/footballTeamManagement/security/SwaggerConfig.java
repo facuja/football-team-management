@@ -15,8 +15,8 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Mi API")
-                        .description("Descripción de la API")
+                .info(new Info().title("football-team-management")
+                        .description("Aplicación para administrar equipos de fútbol")
                         .version("1.0"))
                 .addSecurityItem(new SecurityRequirement().addList("JWT"))
                 .components(new Components()
